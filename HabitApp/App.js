@@ -12,25 +12,13 @@ import Profile from './components/Profile'
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [session, setSession] = useState(null)
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session)
-    })
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-  }, [])
+  
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Auth" component={Auth} />
-        <Stack.Screen name="Profile" component={Profile} 
-        session={session}
-          />
+        <Stack.Screen name="Profile" component={Profile}  />
       </Stack.Navigator>
     </NavigationContainer>
   )
